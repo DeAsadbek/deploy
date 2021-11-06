@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const uploads = require("../middleware/multer").single("photo");
+const path = require("path");
 const Schema = require('../model/Schema');
 const router = Router();
 
@@ -29,7 +30,7 @@ router.post('/product/add', uploads, (req, res) => {
     } else {
         // console.log("Test");
         const db = new Schema({
-            title: req.body.title,
+            title: req.body.title.toLowerCase(),
             price: req.body.price,
             category: req.body.category,
             comments: req.body.comments,
@@ -46,6 +47,19 @@ router.post('/product/add', uploads, (req, res) => {
             }
         });
     }
+});
+
+// add page methof of Get
+router.get('/product/edit/:userId', (req, res) => {
+
+    Schema.findById(req.params.userId, (err, data) => {
+        res.render("add", {
+            title: "Mahsulot ozgartirish",
+            datas: data,
+            button: "Update"
+        });
+    });
+
 });
 
 // card update page methof of Post
@@ -78,7 +92,7 @@ router.post('/product/edit/:userId', uploads, (req, res) => {
         });
         // console.log("Test");
         const db = ({
-            title: req.body.title,
+            title: req.body.title.toLowerCase(),
             price: req.body.price,
             category: req.body.category,
             comments: req.body.comments,

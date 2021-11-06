@@ -34,23 +34,6 @@ router.get('/', (req, res) => {
 
 
 
-// card page methof of Get
-router.get('/product/edit/:userId', (req, res) => {
-
-    dbSchema.findById(req.params.userId, (err, data) => {
-        if (data.dirUser != req.user_id) {
-            req.flash("danger", "Error Not Found Page.");
-            res.redirect("/");
-        } else {
-            res.render("add", {
-                title: "Update page",
-                page: "Maxsulot o'zgartirish",
-                button: "update"
-            });
-        }
-    });
-
-});
 
 // card page methof of Post
 router.get('/product/add/:id', async (req, res) => {
