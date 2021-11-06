@@ -12,6 +12,8 @@ var r_Index = require("./routes/index");
 var r_Add = require("./routes/add");
 var r_User = require("./routes/user");
 
+const dataBase = require("./md/db");
+
 var app = express();
 
 
@@ -53,7 +55,7 @@ app.use(expressValidator({
 }));
 
 // mongoose settings
-mongoose.connect('mongodb://localhost:27017/amaliyot');
+mongoose.connect(dataBase.db);
 const db = mongoose.connection;
 db.on('open', () => {
   console.log('mongoose run  http://localhost:3000');

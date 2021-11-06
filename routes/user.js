@@ -5,14 +5,14 @@ const router = Router();
 const bcryptJs = require("bcryptjs");
 const passport = require('passport');
 
-router.get("/signUp", (req, res) => {
+router.get("/signup", (req, res) => {
     userSchema.find({}, (err, data) => {
-        res.render("signUp", { title: "Sign Up", sign: data });
+        res.render("signup", { title: "Sign Up", sign: data });
     });
 });
 
 // register page methof of Post
-router.post("/signUp", multer, (req, res) => {
+router.post("/signup", multer, (req, res) => {
     // console.log(req.file);
     // console.log(req.body);
 

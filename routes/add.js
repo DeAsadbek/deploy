@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const uploads = require("../middleware/multer").single("photo");
-const path = require("path");
 const Schema = require('../model/Schema');
 const router = Router();
 
